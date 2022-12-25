@@ -1,0 +1,9 @@
+exports = function(arg1, arg2, arg3){
+  var collection = context.services.get("mongodb-atlas").db("h_and_m_DB").collection("h_and_m");
+  return collection.aggregate([{"$project":{product_type_name:1, colour_group_name:1, price:1, department_name:1, "discount_%": 1,  _id:0}},
+                              {"$match": {product_type_name: {"$eq": arg1} , 
+                                          colour_group_name: {"$eq": arg2}, 
+                                          price: {"$eq": arg3}} 
+                               }
+                              ]);
+};

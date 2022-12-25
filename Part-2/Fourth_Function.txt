@@ -1,0 +1,6 @@
+exports = function(type_name){
+  var collection = context.services.get("mongodb-atlas").db("h_and_m_DB").collection("h_and_m");
+  return collection.aggregate([{"$match": {product_type_name: {"$eq": type_name}}},
+  {"$project": {_id:0, prod_name:1, price:1, 'discount_%': 1, new_price: { "$subtract": ["$price", {"$multiply": ["$price",{"$divide": ["$discount_%", 100]}]}]}, detail_desc:1}},
+  {"$sort": {new_price: 1}},{"$limit": 50}])
+}; calculates_the_discount

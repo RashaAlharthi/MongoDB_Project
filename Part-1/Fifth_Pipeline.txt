@@ -1,0 +1,21 @@
+[{
+ $project: {
+  _id: 0,
+  Volcano_Name: 1,
+  Volcano_Type: 1,
+  elevation_feet: 1,
+  elevation_meters: 1
+ }
+}, {
+ $group: {
+  _id: '$Volcano_Type',
+  Highest_evevation: {
+   $max: '$elevation_meters'
+  },
+  Lowest_evevation: {
+   $min: '$elevation_meters'
+  }
+ }
+}, {
+ $out: 'Project_last_pipeline'
+}]

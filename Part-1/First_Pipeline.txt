@@ -1,0 +1,17 @@
+[{
+ $project: {
+  _id: 0,
+  Country: 1,
+  Volcano_Name: 1,
+  Volcano_Type: 1,
+  Lat: 1,
+  Lon: 1,
+  Last_Eruption: 1
+ }
+}, {
+ $match: {
+  Country: 'Japan'
+ }
+}, {
+ $out: 'Project_first_pipeline'
+}]

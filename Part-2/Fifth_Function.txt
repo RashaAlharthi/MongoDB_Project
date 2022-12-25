@@ -1,0 +1,6 @@
+exports = function(args){
+         var collection = context.services.get("mongodb-atlas").db("h_and_m_DB").collection("h_and_m");
+return collection.aggregate([
+     { $match: { $text: { $search: args } } }])
+   
+};
